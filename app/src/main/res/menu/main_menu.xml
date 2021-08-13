@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/search"
+        android:id="@+id/bestAlbom"
         android:icon="@drawable/ic_baseline_search_24"
-        android:title="검색"/>
+        android:title=""/>
     <item
-        android:id="@+id/chart"
+        android:id="@+id/bestArtist"
         android:title="차트보기"
         android:icon="@drawable/ic_baseline_bar_chart_24"/>
     <item
-        android:id="@+id/tag"
+        android:id="@+id/bestTag"
         android:title="태그보기"
         android:icon="@drawable/ic_noun_sharp_1808600"/>
 
