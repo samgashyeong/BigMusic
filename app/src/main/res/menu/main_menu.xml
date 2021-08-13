@@ -3,14 +3,22 @@
     <item
         android:id="@+id/bestAlbom"
         android:icon="@drawable/ic_baseline_search_24"
-        android:title=""/>
+        android:title="음원 순위-세계"/>
     <item
         android:id="@+id/bestArtist"
-        android:title="차트보기"
+        android:title="아티스트 순위-세계"
+        android:icon="@drawable/ic_baseline_bar_chart_24"/>
+    <item
+        android:id="@+id/bestAlbomKr"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:title="음원 순위-한국"/>
+    <item
+        android:id="@+id/bestArtistKr"
+        android:title="아티스트 순위-한국"
         android:icon="@drawable/ic_baseline_bar_chart_24"/>
     <item
         android:id="@+id/bestTag"
-        android:title="태그보기"
+        android:title="인기 태그"
         android:icon="@drawable/ic_noun_sharp_1808600"/>
 
 
