@@ -7,6 +7,7 @@
     android:background="@drawable/row_gray_line">
 
     <TextView
+        android:id="@+id/searchItemTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="가수, 앨범 이름"

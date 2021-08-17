@@ -9,6 +9,8 @@ import androidx.databinding.DataBindingUtil
 import com.example.bigmusic.Data.Search.SearchArtist.Artist
 import com.example.bigmusic.Data.Search.SearchTrack.Track
 import com.example.bigmusic.R
+import com.example.bigmusic.View.search.adapter.ArtistAdapter
+import com.example.bigmusic.View.search.adapter.TrackAdapter
 import com.example.bigmusic.databinding.ActivitySearchBinding
 import com.google.gson.GsonBuilder
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -33,24 +35,27 @@ class SearchActivity : AppCompatActivity() {
         binding.backBtn.setOnClickListener {
             finish()
         }
-
         binding.editText.addTextChangedListener {
-            getSearchArtistData(binding.editText.text.toString())
-            getSearchTrackData(binding.editText.text.toString())
+            if(binding.editText.text.toString().count() > 0){
+                getSearchArtistData(binding.editText.text.toString())
+                getSearchTrackData(binding.editText.text.toString())
 
-            Log.d(TAG, "onCreate: artist : $returnArtistData\ntrack : $returnTrackData")
+                Log.d(TAG, "onCreate: artist : $returnArtistData\ntrack : $returnTrackData")
+
+                binding.artistSearchRecycler.adapter = ArtistAdapter(returnArtistData)
+                binding.trackRecycler.adapter = TrackAdapter(returnTrackData)
+
+            }
         }
 
-        binding.sortBtn.setOnClickListener {
 
-        }
     }
 
-    @DelicateCoroutinesApi
+
     private fun getSearchTrackData(inputData: String){
         val gson = GsonBuilder().setLenient().create()
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://ws.audioscrobbler.com/2.0/")
+            .baseUrl("https://ws.audioscrobbler.com/")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(SearchTrack::class.java)
@@ -62,28 +67,26 @@ class SearchActivity : AppCompatActivity() {
             if (result.isSuccessful) {
                 val data = result.body()
 
+                returnTrackData.clear()
 
-                Log.d(TAG, "getSearchTrackData: data result : $data")
 
-
-//                for (i in data!!.results.trackmatches.track) {
-//                    returnTrackData.add(i)
-//                }
+                for (i in data!!.results.trackmatches.track) {
+                    returnTrackData.add(i)
+                }
             }
         }
 
     }
 
-    @DelicateCoroutinesApi
+
     private fun getSearchArtistData(inputData: String) {
 
         val gson = GsonBuilder().setLenient().create()
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://ws.audioscrobbler.com/2.0/")
+            .baseUrl("https://ws.audioscrobbler.com/")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(SerachArtist::class.java)
-        val returnArtistData: ArrayList<Artist> = ArrayList()
 
 
         Log.d(TAG, "getSearchArtistData: 함수 실행됨")
@@ -98,9 +101,12 @@ class SearchActivity : AppCompatActivity() {
                 val data = result.body()
 
 
-//                for (i in data!!.results.artistmatches.artist) {
-//                    returnArtistData.add(i)
-//                }
+                returnArtistData.clear()
+
+
+                for (i in data!!.results.artistmatches.artist) {
+                    returnArtistData.add(i)
+                }
             }
         }
     }
