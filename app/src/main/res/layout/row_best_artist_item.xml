@@ -36,26 +36,13 @@
         android:id="@+id/trackText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="20dp"
         android:text="밥 먹고 싶은 노래"
         android:textColor="#000"
         android:textSize="20sp"
-        android:layout_margin="20dp"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/singerText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="이준상"
-        android:textColor="#000"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/trackText" />
-
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <TextView

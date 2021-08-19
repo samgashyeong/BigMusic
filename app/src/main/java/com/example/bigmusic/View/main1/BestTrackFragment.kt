@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.bigmusic.R
 import com.example.bigmusic.View.MainViewModel
 import com.example.bigmusic.View.main1.adapter.TrackAdapter
+import com.example.bigmusic.View.main1.adapter.TrackKrAdapter
 import com.example.bigmusic.databinding.FragmentBestTrackBinding
 
 class BestTrackFragment : Fragment() {
@@ -22,6 +23,20 @@ class BestTrackFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater ,R.layout.fragment_best_track, container, false)
+
+
+        binding.sortBtn.setOnClickListener {
+            when(binding.sortBtn.text){
+                "한국 기준"->{
+                    binding.recycler.adapter = vM.bestTrackKr.value?.let { it1 -> TrackKrAdapter(it1) }
+                    binding.sortBtn.text = "세계 기준"
+                }
+                "세계 기준"->{
+                    binding.recycler.adapter = vM.bestTrack.value?.let { it1 -> TrackAdapter(it1) }
+                    binding.sortBtn.text = "한국 기준"
+                }
+            }
+        }
         return binding.root
     }
 
