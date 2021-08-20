@@ -42,7 +42,10 @@ class SearchActivity : AppCompatActivity() {
             }
         }
 
-        val artistAdapter = ArtistAdapter(returnArtistData)
+        val artistAdapter = ArtistAdapter(returnArtistData){
+            startActivity(Intent(applicationContext, InfoAritstActivity::class.java)
+                .putExtra("artist", it))
+        }
         val trackAdapter = TrackAdapter(returnTrackData)
 
         binding.sortBtn.setOnClickListener {
@@ -58,12 +61,6 @@ class SearchActivity : AppCompatActivity() {
             }
         }
 
-        artistAdapter.setItemClickListener(object : ArtistAdapter.OnItemClickListener{
-            override fun onClick(v: View, position: Int, data: Artist) {
-                startActivity(Intent(applicationContext, InfoAritstActivity::class.java)
-                    .putExtra("artist", data))
-            }
-        })
 
 
     }
@@ -93,7 +90,10 @@ class SearchActivity : AppCompatActivity() {
                 withContext(Dispatchers.Main){
                     when(binding.sortBtn.text.toString()){
                         "가수 기준"->binding.recycler.adapter = TrackAdapter(returnTrackData)
-                        "곡 기준"->binding.recycler.adapter = ArtistAdapter(returnArtistData)
+                        "곡 기준"->binding.recycler.adapter = ArtistAdapter(returnArtistData){
+                            startActivity(Intent(applicationContext, InfoAritstActivity::class.java)
+                                .putExtra("artist", it))
+                        }
                     }
                 }
 
@@ -129,7 +129,10 @@ class SearchActivity : AppCompatActivity() {
                 withContext(Dispatchers.Main){
                     when(binding.sortBtn.text.toString()){
                         "가수 기준"->binding.recycler.adapter = TrackAdapter(returnTrackData)
-                        "곡 기준"->binding.recycler.adapter = ArtistAdapter(returnArtistData)
+                        "곡 기준"->binding.recycler.adapter = ArtistAdapter(returnArtistData){
+                            startActivity(Intent(applicationContext, InfoAritstActivity::class.java)
+                                .putExtra("artist", it))
+                        }
                     }
                 }
             }

@@ -1,5 +1,6 @@
 package com.example.bigmusic.View.search.adapter
 
+import android.provider.ContactsContract
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,25 +10,31 @@ import com.example.bigmusic.Data.Search.SearchArtist.Artist
 import com.example.bigmusic.Data.Search.SearchArtist.SearchArtistData
 import com.example.bigmusic.R
 
-class  ArtistAdapter(val DataList:ArrayList<Artist>): RecyclerView.Adapter<ArtistAdapter.MyViewHolder>(){
-    private lateinit var itemClickListener : OnItemClickListener
+class  ArtistAdapter(val DataList:ArrayList<Artist>, val itemClick: (Artist) -> Unit): RecyclerView.Adapter<ArtistAdapter.MyViewHolder>(){
 
-    class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    inner class MyViewHolder(itemView: View, itemClick: (Artist) -> Unit): RecyclerView.ViewHolder(itemView) {
         //ex)val 변수명 = itemView.findViewById<xml이름>(아이디네임)
         val itemText = itemView.findViewById<TextView>(R.id.searchItemTv)
+        fun bind(item:Artist){
+            itemText.text = item.name
+            itemView.setOnClickListener {
+                itemClick(item)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.row_search_list, parent, false)
-        return MyViewHolder(view)
+        return MyViewHolder(view, itemClick)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         //ex)holder.(홀더클래스변수).text = DataList[position].name
+        holder.bind(DataList[position])
         holder.itemText.text = DataList[position].name
-        holder.itemView.setOnClickListener {
-            itemClickListener.onClick(it, position, DataList[position])
-        }
+//        holder.itemView.setOnClickListener {
+//            itemClickListener?.onClick(it, position, DataList[position])
+//        }
     }
 
     interface OnItemClickListener {
@@ -37,6 +44,8 @@ class  ArtistAdapter(val DataList:ArrayList<Artist>): RecyclerView.Adapter<Artis
     fun setItemClickListener(itemClickListener: OnItemClickListener) {
         this.itemClickListener = itemClickListener
     }
+
+    private var itemClickListener : OnItemClickListener? = null
 
     override fun getItemCount() = DataList.size
 
