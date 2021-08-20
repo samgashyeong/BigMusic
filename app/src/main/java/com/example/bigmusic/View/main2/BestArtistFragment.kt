@@ -40,7 +40,7 @@ class BestArtistFragment : Fragment() {
                             it1
                         )
                     }
-                    binding.sortBtn.text="세계 기준"
+                    binding.sortBtn.text="한국 기준"
                 }
             }
         }

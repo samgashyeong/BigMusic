@@ -10,6 +10,8 @@ import com.example.bigmusic.Data.Search.SearchArtist.SearchArtistData
 import com.example.bigmusic.R
 
 class  ArtistAdapter(val DataList:ArrayList<Artist>): RecyclerView.Adapter<ArtistAdapter.MyViewHolder>(){
+    private lateinit var itemClickListener : OnItemClickListener
+
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         //ex)val 변수명 = itemView.findViewById<xml이름>(아이디네임)
         val itemText = itemView.findViewById<TextView>(R.id.searchItemTv)
@@ -23,7 +25,19 @@ class  ArtistAdapter(val DataList:ArrayList<Artist>): RecyclerView.Adapter<Artis
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         //ex)holder.(홀더클래스변수).text = DataList[position].name
         holder.itemText.text = DataList[position].name
+        holder.itemView.setOnClickListener {
+            itemClickListener.onClick(it, position, DataList[position])
+        }
     }
+
+    interface OnItemClickListener {
+        fun onClick(v: View, position: Int, data : Artist)
+    }
+
+    fun setItemClickListener(itemClickListener: OnItemClickListener) {
+        this.itemClickListener = itemClickListener
+    }
+
     override fun getItemCount() = DataList.size
 
 }

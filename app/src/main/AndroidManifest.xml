@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BigMusic">
         <activity
+            android:name=".View.search.Info.InfoAritstActivity"
+            android:exported="true" />
+        <activity
             android:name=".View.MainActivity"
             android:exported="true" />
         <activity android:name=".View.search.SearchActivity" />
