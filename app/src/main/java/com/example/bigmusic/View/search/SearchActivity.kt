@@ -46,7 +46,10 @@ class SearchActivity : AppCompatActivity() {
             startActivity(Intent(applicationContext, InfoAritstActivity::class.java)
                 .putExtra("artist", it))
         }
-        val trackAdapter = TrackAdapter(returnTrackData)
+        val trackAdapter = TrackAdapter(returnTrackData){
+            startActivity(Intent(applicationContext, InfoAritstActivity::class.java)
+                .putExtra("track", it))
+        }
 
         binding.sortBtn.setOnClickListener {
             when(binding.sortBtn.text.toString()){
@@ -89,7 +92,10 @@ class SearchActivity : AppCompatActivity() {
 
                 withContext(Dispatchers.Main){
                     when(binding.sortBtn.text.toString()){
-                        "가수 기준"->binding.recycler.adapter = TrackAdapter(returnTrackData)
+                        "가수 기준"->binding.recycler.adapter = TrackAdapter(returnTrackData){
+                            startActivity(Intent(applicationContext, InfoAritstActivity::class.java)
+                                .putExtra("track", it))
+                        }
                         "곡 기준"->binding.recycler.adapter = ArtistAdapter(returnArtistData){
                             startActivity(Intent(applicationContext, InfoAritstActivity::class.java)
                                 .putExtra("artist", it))
@@ -128,7 +134,10 @@ class SearchActivity : AppCompatActivity() {
 
                 withContext(Dispatchers.Main){
                     when(binding.sortBtn.text.toString()){
-                        "가수 기준"->binding.recycler.adapter = TrackAdapter(returnTrackData)
+                        "가수 기준"->binding.recycler.adapter = TrackAdapter(returnTrackData){
+                            startActivity(Intent(applicationContext, InfoAritstActivity::class.java)
+                                .putExtra("track", it))
+                        }
                         "곡 기준"->binding.recycler.adapter = ArtistAdapter(returnArtistData){
                             startActivity(Intent(applicationContext, InfoAritstActivity::class.java)
                                 .putExtra("artist", it))
