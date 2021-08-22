@@ -12,7 +12,9 @@ import com.example.bigmusic.R
 import com.example.bigmusic.View.MainViewModel
 import com.example.bigmusic.View.main1.adapter.TrackAdapter
 import com.example.bigmusic.View.main1.adapter.TrackKrAdapter
+import com.example.bigmusic.View.search.Info.InfoAritstActivity
 import com.example.bigmusic.databinding.FragmentBestTrackBinding
+import android.content.Intent as Intent1
 
 class BestTrackFragment : Fragment() {
 
@@ -28,11 +30,17 @@ class BestTrackFragment : Fragment() {
         binding.sortBtn.setOnClickListener {
             when(binding.sortBtn.text){
                 "한국 기준"->{
-                    binding.recycler.adapter = vM.bestTrackKr.value?.let { it1 -> TrackKrAdapter(it1) }
+                    binding.recycler.adapter = vM.bestTrackKr.value?.let { it1 -> TrackKrAdapter(it1){
+                        startActivity(android.content.Intent(context, InfoAritstActivity::class.java)
+                            .putExtra("track", it))
+                    } }
                     binding.sortBtn.text = "세계 기준"
                 }
                 "세계 기준"->{
-                    binding.recycler.adapter = vM.bestTrack.value?.let { it1 -> TrackAdapter(it1) }
+                    binding.recycler.adapter = vM.bestTrack.value?.let { it1 -> TrackAdapter(it1){
+                        startActivity(android.content.Intent(context, InfoAritstActivity::class.java)
+                            .putExtra("track", it))
+                    } }
                     binding.sortBtn.text = "한국 기준"
                 }
             }
@@ -46,7 +54,10 @@ class BestTrackFragment : Fragment() {
         vM = ViewModelProvider(requireActivity())[MainViewModel::class.java]
 
         vM.bestTrack.observe(requireActivity(), Observer {
-            binding.recycler.adapter = vM.bestTrack.value?.let { it1 -> TrackAdapter(it1) }
+            binding.recycler.adapter = vM.bestTrack.value?.let { it1 -> TrackAdapter(it1){
+                startActivity(android.content.Intent(context, InfoAritstActivity::class.java)
+                    .putExtra("track", it))
+            } }
         })
     }
 }

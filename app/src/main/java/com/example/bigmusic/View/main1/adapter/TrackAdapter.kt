@@ -8,10 +8,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.bigmusic.Data.Best.BestTrack.Track
+import com.example.bigmusic.Data.Info.ArtistData.Similar.Artist
 import com.example.bigmusic.R
 import com.example.bigmusic.View.ReturnK
 
-class  TrackAdapter(val DataList:ArrayList<Track>): RecyclerView.Adapter<TrackAdapter.MyViewHolder>(){
+class  TrackAdapter(val DataList:ArrayList<Track>, private val onClick : (data : Track)->Unit): RecyclerView.Adapter<TrackAdapter.MyViewHolder>(){
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         //ex)val 변수명 = itemView.findViewById<xml이름>(아이디네임)
         val trackText = itemView.findViewById<TextView>(R.id.trackText)
@@ -23,7 +24,11 @@ class  TrackAdapter(val DataList:ArrayList<Track>): RecyclerView.Adapter<TrackAd
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.row_best_item, parent, false)
-        return MyViewHolder(view)
+        val myViewHolder = MyViewHolder(view)
+        view.setOnClickListener {
+            onClick.invoke(DataList[myViewHolder.adapterPosition])
+        }
+        return myViewHolder
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {

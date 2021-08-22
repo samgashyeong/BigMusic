@@ -11,7 +11,7 @@ import com.example.bigmusic.Data.Best.BestTrackKr.Track
 import com.example.bigmusic.R
 import com.example.bigmusic.View.ReturnK
 
-class  TrackKrAdapter(val DataList:ArrayList<Track>): RecyclerView.Adapter<TrackKrAdapter.MyViewHolder>(){
+class  TrackKrAdapter(val DataList:ArrayList<Track>, private val onClick : (data : Track)->Unit): RecyclerView.Adapter<TrackKrAdapter.MyViewHolder>(){
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         //ex)val 변수명 = itemView.findViewById<xml이름>(아이디네임)
         val trackText = itemView.findViewById<TextView>(R.id.trackText)
@@ -24,7 +24,11 @@ class  TrackKrAdapter(val DataList:ArrayList<Track>): RecyclerView.Adapter<Track
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.row_best_item, parent, false)
-        return MyViewHolder(view)
+        val myViewHolder = MyViewHolder(view)
+        view.setOnClickListener {
+            onClick.invoke(DataList[myViewHolder.adapterPosition])
+        }
+        return myViewHolder
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {

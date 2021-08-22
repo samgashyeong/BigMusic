@@ -49,6 +49,8 @@ class InfoAritstActivity : AppCompatActivity() {
         }
 
 
+//        binding.youTubePlayerView.play("XsX3ATc3FbA")
+
         setSupportActionBar(binding.toolbar2)
     }
 
@@ -81,6 +83,7 @@ class InfoAritstActivity : AppCompatActivity() {
     private fun getTrackData() {
         val data = intent.getSerializableExtra("track") as Track
 
+        getYoutubeVideoCode(data.name, data.artist)
         getImageData("${data.artist}-${data.name}")
         binding.textView2.text = "관련된 곡"
         binding.artistNameToolbarText.text = data.name
@@ -108,6 +111,9 @@ class InfoAritstActivity : AppCompatActivity() {
 
                 withContext(Dispatchers.Main){
                     binding.tagRecycler.adapter = InfoTrackTagAdapter(tag)
+                    if(tag.isEmpty()){
+                        binding.noRelateTagText.visibility = View.VISIBLE
+                    }
                 }
 
             }
@@ -119,6 +125,32 @@ class InfoAritstActivity : AppCompatActivity() {
 
                 withContext(Dispatchers.Main){
                     binding.similarRecycler.adapter = InfoTrackSimilarAdapter(track)
+                    if(track.isEmpty()){
+                        binding.noRelateTrackAndArtistText.visibility = View.VISIBLE
+                        binding.noRelateTrackAndArtistText.text = "관련된 곡이 없습니다."
+                    }
+                }
+            }
+        }
+    }
+
+    private fun getYoutubeVideoCode(name: String, artist: String) {
+        val api = Retrofit.Builder().baseUrl("https://www.googleapis.com/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(YoutubeSearchService::class.java)
+
+        GlobalScope.launch(Dispatchers.IO) {
+            val a = api.getYoutubeVideo((1).toString(), "snippet", "$name-$artist lyrics", SecretKey().youtubeId).awaitResponse()
+
+            Log.d(TAG, "getYoutubeVideoCode: aResult = $a")
+            if(a.isSuccessful){
+                val result = a.body()
+
+                val videoCode = result!!.items[0].id.videoId
+
+                withContext(Dispatchers.Main){
+                    binding.youTubePlayerView.play(videoCode)
                 }
             }
         }
@@ -140,6 +172,8 @@ class InfoAritstActivity : AppCompatActivity() {
         val playCount = ReturnK(data.listeners.toLong()).formatNumber(data.listeners.toLong())
         binding.likeListenerText.text = playCount
         binding.artistText.visibility = View.GONE
+        binding.youtubeLayout.visibility = View.GONE
+        binding.youTubePlayerView.visibility = View.GONE
 
 
         GlobalScope.launch(Dispatchers.IO) {
@@ -155,6 +189,9 @@ class InfoAritstActivity : AppCompatActivity() {
 
                 withContext(Dispatchers.Main){
                     binding.similarRecycler.adapter = InfoArtistSimilarAdapter(similarAritstList)
+                    if(similarAritstList.isEmpty()){
+                        binding.noRelateTrackAndArtistText.visibility = View.VISIBLE
+                    }
                 }
             }
 
@@ -167,6 +204,10 @@ class InfoAritstActivity : AppCompatActivity() {
 
                 withContext(Dispatchers.Main){
                     binding.tagRecycler.adapter = InfoArtistTagAdapter(tagArtistList)
+                    if(tagArtistList.isEmpty()){
+                        binding.noRelateTrackAndArtistText.visibility = View.VISIBLE
+                        binding.noRelateTrackAndArtistText.text = "관련된 아티스트 없습니다."
+                    }
                 }
             }
         }

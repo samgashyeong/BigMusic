@@ -22,14 +22,15 @@ class  InfoArtistSimilarAdapter(val DataList:ArrayList<Artist>): RecyclerView.Ad
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.row_similar, parent, false)
-        return MyViewHolder(view)
+        val myViewHolder = MyViewHolder(view)
+        return myViewHolder
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         //ex)holder.(홀더클래스변수).text = DataList[position].name
         Glide.with(holder.itemView).load(DataList[position].image[2].text).into(holder.image)
         holder.similarText.text = DataList[position].name
-        holder.similarPersent.text = "${(DataList[position].match.toDouble() * 100).roundToInt()}% 맞음"
+        holder.similarPersent.text = "${(DataList[position].match.toDouble() * 100).roundToInt()}% 일치함"
         holder.aritstNameText.visibility = View.INVISIBLE
     }
     override fun getItemCount() = DataList.size

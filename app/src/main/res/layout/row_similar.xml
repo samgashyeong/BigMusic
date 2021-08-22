@@ -39,6 +39,7 @@
         android:text="가수이름"
         android:textColor="@color/black"
         android:textSize="10sp"
+        android:gravity="center"
         android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

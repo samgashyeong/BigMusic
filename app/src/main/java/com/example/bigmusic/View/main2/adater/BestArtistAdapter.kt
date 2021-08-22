@@ -8,12 +8,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.bigmusic.Data.Best.BestArtist.Artist
+import com.example.bigmusic.Data.Best.BestTrackKr.Track
 import com.example.bigmusic.R
 import com.example.bigmusic.View.ReturnK
 
-class  BestArtistAdapter(val DataList:ArrayList<Artist>): RecyclerView.Adapter<BestArtistAdapter.MyViewHolder>(){
+class  BestArtistAdapter(val DataList:ArrayList<Artist>, private val onClick : (data : Artist)->Unit): RecyclerView.Adapter<BestArtistAdapter.MyViewHolder>(){
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        //ex)val 변수명 = itemView.findViewById<xml이름>(아이디네임)
         val trackText = itemView.findViewById<TextView>(R.id.trackText)
         val rankText = itemView.findViewById<TextView>(R.id.rankText)
         val trackImage = itemView.findViewById<ImageView>(R.id.imageView)
@@ -22,11 +22,14 @@ class  BestArtistAdapter(val DataList:ArrayList<Artist>): RecyclerView.Adapter<B
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.row_best_artist_item, parent, false)
-        return MyViewHolder(view)
+        val myViewHolder = MyViewHolder(view)
+        view.setOnClickListener {
+            onClick.invoke(DataList[myViewHolder.adapterPosition])
+        }
+        return myViewHolder
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        //ex)holder.(홀더클래스변수).text = DataList[position].name
         holder.trackText.text = DataList[position].name
         holder.rankText.text = position.plus(1).toString()
         Glide.with(holder.itemView)

@@ -1,6 +1,7 @@
 package com.example.bigmusic.View.main2
 
 import android.content.ContentValues.TAG
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -13,6 +14,7 @@ import com.example.bigmusic.R
 import com.example.bigmusic.View.MainViewModel
 import com.example.bigmusic.View.main2.adater.BestArtistAdapter
 import com.example.bigmusic.View.main2.adater.BestArtistKrAdapter
+import com.example.bigmusic.View.search.Info.InfoAritstActivity
 import com.example.bigmusic.databinding.FragmentBestArtistBinding
 
 class BestArtistFragment : Fragment() {
@@ -30,7 +32,10 @@ class BestArtistFragment : Fragment() {
                     binding.recycler.adapter = vM.bestArtistKr.value?.let { it1 ->
                         BestArtistKrAdapter(
                             it1
-                        )
+                        ){
+                            startActivity(Intent(requireContext(), InfoAritstActivity::class.java)
+                                .putExtra("artist", it))
+                        }
                     }
                     binding.sortBtn.text="세계 기준"
                 }
@@ -38,7 +43,10 @@ class BestArtistFragment : Fragment() {
                     binding.recycler.adapter = vM.bestArtist.value?.let { it1 ->
                         BestArtistAdapter(
                             it1
-                        )
+                        ){
+                            startActivity(Intent(requireContext(), InfoAritstActivity::class.java)
+                                .putExtra("artist", it))
+                        }
                     }
                     binding.sortBtn.text="한국 기준"
                 }
@@ -55,7 +63,10 @@ class BestArtistFragment : Fragment() {
 
         vM.bestArtist.observe(requireActivity(), {
             Log.d(TAG, "onViewCreated: vM.bestArtist 실행됨")
-            binding.recycler.adapter = BestArtistAdapter(it)
+            binding.recycler.adapter = BestArtistAdapter(it){
+                startActivity(Intent(requireContext(), InfoAritstActivity::class.java)
+                    .putExtra("artist", it))
+            }
         })
     }
 }

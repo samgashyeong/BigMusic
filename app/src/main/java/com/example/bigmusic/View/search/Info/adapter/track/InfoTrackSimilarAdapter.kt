@@ -29,7 +29,7 @@ class  InfoTrackSimilarAdapter(val DataList:ArrayList<Track>): RecyclerView.Adap
         Glide.with(holder.itemView).load(DataList[position].image[2].text).into(holder.image)
         holder.similarText.text = DataList[position].name
         val persent = (DataList[position].match*100).roundToInt()
-        holder.similarPersent.text = "$persent% 맞음"
+        holder.similarPersent.text = "$persent% 일치함"
         holder.aritstNameText.text = DataList[position].artist.name
 
     }
