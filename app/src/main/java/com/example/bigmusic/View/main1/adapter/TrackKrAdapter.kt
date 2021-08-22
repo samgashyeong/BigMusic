@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.bigmusic.Data.Best.BestTrackKr.Track
 import com.example.bigmusic.R
+import com.example.bigmusic.View.ReturnK
 
 class  TrackKrAdapter(val DataList:ArrayList<Track>): RecyclerView.Adapter<TrackKrAdapter.MyViewHolder>(){
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
@@ -34,7 +35,8 @@ class  TrackKrAdapter(val DataList:ArrayList<Track>): RecyclerView.Adapter<Track
         Glide.with(holder.itemView)
             .load(DataList[position].image[2].text)
             .into(holder.trackImage)
-        holder.playCountText.text = DataList[position].listeners
+        val playCount = ReturnK(DataList[position].listeners.toLong()).formatNumber(DataList[position].listeners.toLong())
+        holder.playCountText.text = playCount
         holder.singerText.text = DataList[position].artist.name
     }
     override fun getItemCount() = DataList.size

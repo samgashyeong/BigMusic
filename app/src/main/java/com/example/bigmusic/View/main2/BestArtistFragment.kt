@@ -27,16 +27,16 @@ class BestArtistFragment : Fragment() {
         binding.sortBtn.setOnClickListener {
             when(binding.sortBtn.text){
                 "한국 기준" ->{
-                    binding.recycler.adapter = vM.bestArtist.value?.let { it1 ->
-                        BestArtistAdapter(
+                    binding.recycler.adapter = vM.bestArtistKr.value?.let { it1 ->
+                        BestArtistKrAdapter(
                             it1
                         )
                     }
                     binding.sortBtn.text="세계 기준"
                 }
                 "세계 기준"->{
-                    binding.recycler.adapter = vM.bestArtistKr.value?.let { it1 ->
-                        BestArtistKrAdapter(
+                    binding.recycler.adapter = vM.bestArtist.value?.let { it1 ->
+                        BestArtistAdapter(
                             it1
                         )
                     }

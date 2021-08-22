@@ -8,7 +8,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface ArtistDataService {
-    @GET("/2.0/?method=artist.gettoptag&api_key=d72493a388347ce59a245b8b03ffa740&format=json")
+    @GET("/2.0/?method=artist.gettoptags&api_key=d72493a388347ce59a245b8b03ffa740&format=json")
     fun getArtistTagData(@Query("artist") artist : String): Call<ArtistTagData>
 
     @GET("/2.0/?method=artist.getsimilar&api_key=d72493a388347ce59a245b8b03ffa740&format=json")

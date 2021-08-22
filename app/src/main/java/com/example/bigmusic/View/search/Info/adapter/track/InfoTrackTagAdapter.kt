@@ -1,11 +1,10 @@
-package com.example.bigmusic.View.search.Info.adapter
+package com.example.bigmusic.View.search.Info.adapter.track
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.bigmusic.Data.Info.ArtistData.Tag.Tag
 import com.example.bigmusic.R
 
 class  InfoTrackTagAdapter(val DataList:ArrayList<com.example.bigmusic.Data.Info.TrackData.Tag.Tag>): RecyclerView.Adapter<InfoTrackTagAdapter.MyViewHolder>(){

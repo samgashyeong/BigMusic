@@ -38,7 +38,6 @@ class SearchActivity : AppCompatActivity() {
             if(binding.editText.text.toString().count() > 0){
                 getSearchArtistData(binding.editText.text.toString())
                 getSearchTrackData(binding.editText.text.toString())
-
             }
         }
 
@@ -55,11 +54,15 @@ class SearchActivity : AppCompatActivity() {
             when(binding.sortBtn.text.toString()){
                 "가수 기준"->{
                     binding.sortBtn.text = "곡 기준"
-                    binding.recycler.adapter = artistAdapter
+                    if(binding.editText.text.toString().count() > 0){
+                        getSearchArtistData(binding.editText.text.toString())
+                    }
                 }
                 "곡 기준"->{
                     binding.sortBtn.text = "가수 기준"
-                    binding.recycler.adapter = trackAdapter
+                    if(binding.editText.text.toString().count() > 0) {
+                        getSearchTrackData(binding.editText.text.toString())
+                    }
                 }
             }
         }

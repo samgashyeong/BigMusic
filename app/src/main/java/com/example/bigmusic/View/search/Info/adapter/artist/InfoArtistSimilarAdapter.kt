@@ -1,4 +1,4 @@
-package com.example.bigmusic.View.search.Info.adapter
+package com.example.bigmusic.View.search.Info.adapter.artist
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,11 +7,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.bigmusic.Data.Info.TrackData.Similare.Track
+import com.example.bigmusic.Data.Info.ArtistData.Similar.Artist
 import com.example.bigmusic.R
 import kotlin.math.roundToInt
 
-class  InfoTrackSimilarAdapter(val DataList:ArrayList<Track>): RecyclerView.Adapter<InfoTrackSimilarAdapter.MyViewHolder>(){
+class  InfoArtistSimilarAdapter(val DataList:ArrayList<Artist>): RecyclerView.Adapter<InfoArtistSimilarAdapter.MyViewHolder>(){
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         //ex)val 변수명 = itemView.findViewById<xml이름>(아이디네임)
         val similarText = itemView.findViewById<TextView>(R.id.similarNameText)
@@ -26,12 +26,12 @@ class  InfoTrackSimilarAdapter(val DataList:ArrayList<Track>): RecyclerView.Adap
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        //ex)holder.(홀더클래스변수).text = DataList[position].name
         Glide.with(holder.itemView).load(DataList[position].image[2].text).into(holder.image)
         holder.similarText.text = DataList[position].name
-        val persent = (DataList[position].match*100).roundToInt()
-        holder.similarPersent.text = "$persent% 맞음"
-        holder.aritstNameText.text = DataList[position].artist.name
-
+        holder.similarPersent.text = "${(DataList[position].match.toDouble() * 100).roundToInt()}% 맞음"
+        holder.aritstNameText.visibility = View.INVISIBLE
     }
     override fun getItemCount() = DataList.size
+
 }
