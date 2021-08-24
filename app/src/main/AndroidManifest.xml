@@ -12,11 +12,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BigMusic">
         <activity
-            android:name=".View.search.Info.InfoAritstActivity"
-            android:exported="true" />
+            android:name=".View.search.Info.tag.InfoTagActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".View.search.Info.artistAndTrack.SearchActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".View.MainActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity android:name=".View.search.SearchActivity" />
         <activity android:name=".View.splash.SplashActivity">
             <intent-filter>

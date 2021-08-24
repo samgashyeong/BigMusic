@@ -1,5 +1,6 @@
 package com.example.bigmusic.View.main3
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.bigmusic.R
 import com.example.bigmusic.View.MainViewModel
 import com.example.bigmusic.View.main3.adapter.BestTagAdapter
+import com.example.bigmusic.View.search.Info.tag.InfoTagActivity
 import com.example.bigmusic.databinding.FragmentBestTagBinding
 
 class BestTagFragment : Fragment() {
@@ -29,7 +31,11 @@ class BestTagFragment : Fragment() {
         vM = ViewModelProvider(requireActivity())[MainViewModel::class.java]
 
         vM.bestTag.observe(requireActivity(), {
-            binding.tagRecycler.adapter = BestTagAdapter(it)
+            binding.tagRecycler.adapter = BestTagAdapter(it){ tag->
+                startActivity(Intent(requireContext(), InfoTagActivity::class.java)
+                    .putExtra("tagName", tag.name)
+                    .putExtra("tagListener", tag.taggings))
+            }
         })
     }
 }

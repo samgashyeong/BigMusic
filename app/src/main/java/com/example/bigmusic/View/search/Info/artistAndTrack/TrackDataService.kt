@@ -1,4 +1,4 @@
-package com.example.bigmusic.View.search.Info
+package com.example.bigmusic.View.search.Info.artistAndTrack
 
 import com.example.bigmusic.Data.Info.TrackData.Similare.TrackSimilarData
 import com.example.bigmusic.Data.Info.TrackData.Tag.TrackTagData

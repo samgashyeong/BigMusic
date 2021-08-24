@@ -59,7 +59,6 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.search ->{
-                Toast.makeText(this, "검색버튼 눌러짐", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this, SearchActivity::class.java))
             }
         }

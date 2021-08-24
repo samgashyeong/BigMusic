@@ -1,4 +1,4 @@
-package com.example.bigmusic.View.search.Info
+package com.example.bigmusic.View.search.Info.artistAndTrack
 
 import com.example.bigmusic.Data.Info.Yotube.YoutubeData
 import retrofit2.Call

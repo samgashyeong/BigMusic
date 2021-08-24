@@ -14,7 +14,6 @@ import com.example.bigmusic.R
 import com.example.bigmusic.View.MainViewModel
 import com.example.bigmusic.View.main2.adater.BestArtistAdapter
 import com.example.bigmusic.View.main2.adater.BestArtistKrAdapter
-import com.example.bigmusic.View.search.Info.InfoAritstActivity
 import com.example.bigmusic.databinding.FragmentBestArtistBinding
 
 class BestArtistFragment : Fragment() {
@@ -33,8 +32,8 @@ class BestArtistFragment : Fragment() {
                         BestArtistKrAdapter(
                             it1
                         ){
-                            startActivity(Intent(requireContext(), InfoAritstActivity::class.java)
-                                .putExtra("artist", it))
+                            startActivity(Intent(requireContext(), com.example.bigmusic.View.search.SearchActivity::class.java)
+                                .putExtra("artist", it.name))
                         }
                     }
                     binding.sortBtn.text="세계 기준"
@@ -44,8 +43,8 @@ class BestArtistFragment : Fragment() {
                         BestArtistAdapter(
                             it1
                         ){
-                            startActivity(Intent(requireContext(), InfoAritstActivity::class.java)
-                                .putExtra("artist", it))
+                            startActivity(Intent(requireContext(), com.example.bigmusic.View.search.SearchActivity::class.java)
+                                .putExtra("artist", it.name))
                         }
                     }
                     binding.sortBtn.text="한국 기준"
@@ -64,8 +63,8 @@ class BestArtistFragment : Fragment() {
         vM.bestArtist.observe(requireActivity(), {
             Log.d(TAG, "onViewCreated: vM.bestArtist 실행됨")
             binding.recycler.adapter = BestArtistAdapter(it){
-                startActivity(Intent(requireContext(), InfoAritstActivity::class.java)
-                    .putExtra("artist", it))
+                startActivity(Intent(requireContext(), com.example.bigmusic.View.search.SearchActivity::class.java)
+                    .putExtra("artist", it.name))
             }
         })
     }

@@ -4,9 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Administrator/StudioProjects/BigMusic/app/src/main/res/drawable/circle_image.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/Administrator/StudioProjects/BigMusic/app/src/main/res/drawable/ic_baseline_arrow_back_ios_24.xml" value="0.25104166666666666" />
+        <entry key="..\:/Users/Administrator/StudioProjects/BigMusic/app/src/main/res/drawable/ic_baseline_people_alt_24.xml" value="0.25104166666666666" />
         <entry key="..\:/Users/Administrator/StudioProjects/BigMusic/app/src/main/res/drawable/round_edit_text.xml" value="0.3875" />
         <entry key="..\:/Users/Administrator/StudioProjects/BigMusic/app/src/main/res/drawable/round_item.xml" value="0.3875" />
-        <entry key="..\:/Users/Administrator/StudioProjects/BigMusic/app/src/main/res/layout/activity_info_aritst.xml" value="0.33" />
+        <entry key="..\:/Users/Administrator/StudioProjects/BigMusic/app/src/main/res/layout/activity_info_aritst.xml" value="0.24618204031765425" />
+        <entry key="..\:/Users/Administrator/StudioProjects/BigMusic/app/src/main/res/layout/activity_info_tag.xml" value="0.2" />
         <entry key="..\:/Users/Administrator/StudioProjects/BigMusic/app/src/main/res/layout/activity_main.xml" value="0.21" />
         <entry key="..\:/Users/Administrator/StudioProjects/BigMusic/app/src/main/res/layout/activity_search.xml" value="0.22" />
         <entry key="..\:/Users/Administrator/StudioProjects/BigMusic/app/src/main/res/layout/activity_splash.xml" value="0.18" />
@@ -21,6 +24,9 @@
         <entry key="..\:/Users/Administrator/StudioProjects/BigMusic/app/src/main/res/layout/row_search_list.xml" value="0.20833333333333334" />
         <entry key="..\:/Users/Administrator/StudioProjects/BigMusic/app/src/main/res/layout/row_similar.xml" value="0.33" />
         <entry key="..\:/Users/Administrator/StudioProjects/BigMusic/app/src/main/res/layout/row_tag.xml" value="0.20833333333333334" />
+        <entry key="..\:/Users/Administrator/StudioProjects/BigMusic/app/src/main/res/layout/tag_item_artist_layout.xml" value="0.25" />
+        <entry key="..\:/Users/Administrator/StudioProjects/BigMusic/app/src/main/res/layout/tag_item_layout.xml" value="0.33" />
+        <entry key="..\:/Users/Administrator/StudioProjects/BigMusic/app/src/main/res/layout/tag_item_track_layout.xml" value="0.2" />
       </map>
     </option>
   </component>
