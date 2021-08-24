@@ -40,6 +40,7 @@ class SearchActivity : AppCompatActivity() {
 
         if(intent.hasExtra("artist")){
             getArtistData()
+            binding.errorYoutubeText.visibility = View.GONE
         }
         else{
             getTrackData()
